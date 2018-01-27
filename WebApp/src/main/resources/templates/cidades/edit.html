@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+	
+	<th:block layout:fragment="content">
+		<form th:action="@{/cidades/{id}(id=${cidade.id})}" th:object="${cidade}" th:method="PUT">
+			<input type="hidden" th:field="*{id}"/>
+			<div class="form-group">
+				<input type="text" name="nome" th:field="*{nome}" placeholder="Informe o nome" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</form>
+	</th:block>
+</html>
