@@ -9,4 +9,5 @@ import com.algamoney.api.repository.lancamento.LancamentoRepositoryQuery;
 @Repository
 public interface LancamentoRepository extends JpaRepository<Lancamento, Long>, LancamentoRepositoryQuery{
 
+
 }
