@@ -5,29 +5,53 @@ import { Categoria } from '../model/categoria';
 declare var $: any;
 
 @Component({
-  selector: 'app-categoria-grid',
-  templateUrl: './categoria-grid.component.html',
-  styleUrls: ['./categoria-grid.component.css']
+    selector: 'app-categoria-grid',
+    templateUrl: './categoria-grid.component.html',
+    styleUrls: ['./categoria-grid.component.css']
 })
 export class CategoriaGridComponent implements OnInit {
 
-  categorias: Array<Categoria>;
+    categorias: Array<Categoria>;
+    categoriaSelecionada: Categoria;
 
-  constructor(private service: CategoriaService) { }
+    constructor(private service: CategoriaService) { }
 
-  ngOnInit() {
-    this.service.listar().subscribe(
-      (response) => {
-        this.categorias = response;
-      },
-      (erro) => {
-        console.log('Falha na requisição: ', erro);
-      }
-    );
-  }
+    ngOnInit() {
+        this.listar();
+    }
 
-  nova(){
-    $('#modalNova').modal('show');
-  }
+    nova() {
+        this.categoriaSelecionada = new Categoria();
+        $('#modalNova').modal('show');
+    }
+
+    onSalvarCategoria(event) {
+        $('#modalNova').modal('hide');
+        this.listar();
+    }
+
+    onRemoverCategoria(event) {
+        $('#modalNova').modal('hide');
+        this.listar();
+    }
+
+    listar() {
+        this.service.listar().subscribe(
+            (response) => {
+                this.categorias = response;
+            },
+            (erro) => {
+                console.log('Falha na requisição: ', erro);
+            }
+        );
+    }
+
+    editar(obj: Categoria) {
+        this.categoriaSelecionada = obj;
+
+        if (this.categoriaSelecionada) {
+            $('#modalNova').modal('show');
+        }
+    }
 
 }

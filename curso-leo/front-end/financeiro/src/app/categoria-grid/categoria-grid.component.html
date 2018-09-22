@@ -3,7 +3,9 @@
     <div class="card-header">
         <i class="fas fa-table"> </i> Categorias
 
-        <button class="btn btn-sm btn-primary" style="float: right;" (click)="nova();">Nova</button>
+        <button class="btn btn-sm btn-primary" style="float: right;" (click)="nova();">
+            <i class="fas fa-plus"></i> Nova
+        </button>
 
     </div>
 
@@ -16,15 +18,18 @@
                         aria-describedby="dataTable_info" style="width: 100%;">
                         <thead>
                             <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                    aria-sort="ascending">Nome</th>
-                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1">Descrição</th>
+                                <th rowspan="1" colspan="1">Nome</th>
+                                <th rowspan="1" colspan="1">Descrição</th>
+                                <th rowspan="1" colspan="1">#</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr role="row" class="even" *ngFor="let categoria of categorias">
                                 <td class="sorting_1">{{categoria.nome}}</td>
                                 <td>{{categoria.descricao}}</td>
+                                <td>
+                                    <i style="cursor: pointer;" class="fas fa-edit" (click)="editar(categoria);"></i>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -48,7 +53,7 @@
             </div>
 
             <div class="modal-body">
-
+                <app-categoria-form [categoria]="categoriaSelecionada" (onSalvar)="onSalvarCategoria($event);" (onRemover)="onRemoverCategoria($event);"></app-categoria-form>
             </div>
 
             <div class="modal-footer">
