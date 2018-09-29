@@ -14,7 +14,9 @@ export class CategoriaFormComponent implements OnInit, OnChanges {
 
     @Input() categoria: Categoria = new Categoria();
 
+    // tslint:disable-next-line:no-output-on-prefix
     @Output() onSalvar: EventEmitter<any> = new EventEmitter;
+    // tslint:disable-next-line:no-output-on-prefix
     @Output() onRemover: EventEmitter<any> = new EventEmitter;
 
     form: FormGroup;
@@ -38,7 +40,7 @@ export class CategoriaFormComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        
+
     }
 
     salvar() {

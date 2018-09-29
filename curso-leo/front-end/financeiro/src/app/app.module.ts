@@ -7,6 +7,11 @@ import { CategoriaGridComponent } from './categoria-grid/categoria-grid.componen
 import { RotasRoutingModule } from './rotas/rotas-routing.module';
 import { TemplateComponent } from './template/template.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LancamentoGridComponent } from './lancamento-grid/lancamento-grid.component';
+import { LancamentoFormComponent } from './lancamento-form/lancamento-form.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -14,14 +19,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         AppComponent,
         TemplateComponent,
         CategoriaGridComponent,
-        CategoriaFormComponent
+        CategoriaFormComponent,
+        LancamentoGridComponent,
+        LancamentoFormComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         RotasRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AutoCompleteModule,
+        BrowserAnimationsModule,
+        CalendarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

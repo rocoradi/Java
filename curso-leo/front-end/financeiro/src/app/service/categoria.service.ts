@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Categoria } from '../model/categoria';
 import { Observable, throwError } from 'rxjs';
 
@@ -32,5 +32,12 @@ export class CategoriaService {
         }
 
         return this.http.post<any>('http://localhost:8080/categorias/remover', id);
+    }
+
+    public listarPorNome(nome: string): Observable<any> {
+        if (nome) {
+            const parametro = new HttpParams().set('nome', nome);
+            return this.http.get<any>('http://localhost:8080/categorias/filtrar', {params: parametro});
+        }
     }
 }
