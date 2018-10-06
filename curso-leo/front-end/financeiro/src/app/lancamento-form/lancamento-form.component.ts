@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LancamentoService } from '../service/lancamento.service';
 import { Categoria } from '../model/categoria';
 import { CategoriaService } from '../service/categoria.service';
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
     selector: 'app-lancamento-form',
@@ -29,9 +30,9 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
         this.form = fb.group({
             id: [''],
             nome: ['', Validators.required],
-            tipo: [''],
-            valor: [''],
-            data: [''],
+            tipo: ['DESPESA'],
+            valor: ['', [Validators.required, CustomValidators.number]],
+            data: ['', Validators.required],
             categoria: ['']
         });
     }
@@ -39,9 +40,15 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         this.form.reset();
         if (changes.lancamento && this.lancamento) {
+
+            if (!this.lancamento.data) {
+                this.lancamento.data = new Date();
+            }
+
             this.form.patchValue(this.lancamento);
         } else {
             this.lancamento = new Lancamento();
+            this.lancamento.data = new Date();
             this.form.reset();
         }
     }
@@ -53,8 +60,8 @@ export class LancamentoFormComponent implements OnInit, OnChanges {
             dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
             dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
             dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-            // tslint:disable-next-line:max-line-length
-            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julio', 'Agosto', 'Setembro', 'Ourubro', 'Novembro', 'Dezembro'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                'Julio', 'Agosto', 'Setembro', 'Ourubro', 'Novembro', 'Dezembro'],
             monthNamesShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
             today: 'Hoje',
             clear: 'Limpar'

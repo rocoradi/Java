@@ -23,6 +23,7 @@
                                 <th rowspan="1" colspan="1">Valor</th>
                                 <th rowspan="1" colspan="1">Data</th>
                                 <th rowspan="1" colspan="1">Categoria</th>
+                                <th rowspan="1" colspan="1">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,9 @@
                                 <td>{{lancamento.valor | currency: 'BRL'}}</td>
                                 <td>{{lancamento.data | date : 'dd/MM/yyyy'}}</td>
                                 <td>{{lancamento.categoria.nome}}</td>
+                                <td>
+                                    <i style="cursor: pointer;" class="fas fa-edit" (click)="editar(lancamento);"></i>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,7 +59,7 @@
             </div>
 
             <div class="modal-body">
-                <app-lancamento-form (onSalvar)="onSalvarLancamento($event);">
+                <app-lancamento-form (onSalvar)="onSalvarLancamento($event);" [lancamento]="lancamentoSelecionado">
 
                 </app-lancamento-form>
             </div>

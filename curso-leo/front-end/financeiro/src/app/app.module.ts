@@ -12,6 +12,9 @@ import { LancamentoFormComponent } from './lancamento-form/lancamento-form.compo
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
+import { CustomFormsModule } from 'ng2-validation';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -31,9 +34,11 @@ import { CalendarModule } from 'primeng/calendar';
         ReactiveFormsModule,
         AutoCompleteModule,
         BrowserAnimationsModule,
-        CalendarModule
+        CalendarModule,
+        CustomFormsModule,
+        ToastModule
     ],
-    providers: [],
+    providers: [MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
