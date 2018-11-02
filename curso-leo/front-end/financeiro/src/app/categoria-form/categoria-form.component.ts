@@ -89,7 +89,11 @@ export class CategoriaFormComponent implements OnInit, OnChanges {
                 this.onRemover.emit();
             },
             (erro) => {
-                console.log('Deu errado', erro);
+                this.mensagem.add({
+                    severity: 'error',
+                    summary: 'Atenção',
+                    detail: 'Não foi possível salvar a categoria'
+                });
             }
         );
     }
